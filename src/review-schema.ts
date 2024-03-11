@@ -7,9 +7,13 @@ export const typeDefs = gql`
     id: ID!
     rating: Float!
     content: String!
+    product: Product!
   }
   type Product @key(fields: "id") {
     id: ID!
     reviews: [Review!]!
+  }
+  type Query {
+    review(id: ID!): Review!
   }
 `;

@@ -19,6 +19,14 @@ const resolvers = {
       return reviews.filter(review => review.productId === product.id);
     }
   },
+  Review: {
+    product(review: any) {
+      return {
+        __typename: 'Product',
+        id: review.productId
+      };
+    }
+  }
 };
 
 const server = new ApolloServer({
