@@ -12,7 +12,26 @@ const reviews = [{
   rating: 4.5
 }]
 
+const books = [
+  {
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+  },
+  {
+    title: 'Wuthering Heights',
+    author: 'Emily Brontë',
+  },
+];
+
 const resolvers = {
+
+  Query: {
+    books: () => books,
+  },
+
+  Books: {
+    books: () => books
+  },
   Product: {
     reviews(product: any) {
       debug(`resolving product reviews by product ${JSON.stringify(product)}`);
@@ -26,7 +45,7 @@ const resolvers = {
         id: review.productId
       };
     }
-  }
+  },
 };
 
 const server = new ApolloServer({
