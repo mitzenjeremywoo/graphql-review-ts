@@ -23,15 +23,44 @@ const books = [
   },
 ];
 
-const resolvers = {
+const addBookResponse = 
+{
+    code: 'ok',
+    success: true, 
+    message: 'book added',
+    book: {
+      title: 'The Great Gatsby',
+      author: 'F. Scott Fitzgerald'
+    }
+};
 
-  Query: {
-    books: () => books,
+
+const authors = [
+  {
+    title: 'The Great Gatsby',
+    name: 'F. Scott Fitzgerald',
   },
+  {
+    title: 'Wuthering Heights',
+    name: 'Emily Brontë',
+  },
+];
 
-  Books: {
+const resolvers = {
+  Mutation: { 
+    addBook: (title: String, author: String) => {
+      return addBookResponse
+    }
+  },
+  Custom: {
     books: () => books
   },
+  Query: {
+    books: () => books,
+    author: () => authors,
+    reviews: () => reviews
+  },
+  
   Product: {
     reviews(product: any) {
       debug(`resolving product reviews by product ${JSON.stringify(product)}`);
